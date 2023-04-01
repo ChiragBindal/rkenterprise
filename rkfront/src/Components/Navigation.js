@@ -49,7 +49,7 @@ const NavigationStyled = styled.div`
             color : #2727ce;
         span{
             color : black;
-            margin-left : -0.2rem;
+            margin-left : -0.3rem;
             font-size : 1.4rem; 
         }}
     }

@@ -3,7 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const productRouter = require('./Router/productRouter');
 const userRouter = require('./Router/userRouter');
-// const cartRouter = require('./Router/cartRouter');
+const cartRouter = require('./Router/cartRouter');
 const rkError = require('./UtilsRk/rkError');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
@@ -43,7 +43,7 @@ app.use(morgan('dev'));
 // Making Routes
 app.use('/api/v1/products' , productRouter);
 app.use('/api/v1/users' , userRouter);
-// app.use('/api/v1/carts' , cartRouter);
+app.use('/api/v1/carts' , cartRouter);
 
 
 // Defining the error middleware
@@ -51,7 +51,6 @@ app.all('*' , (req , res, next)=>{
     next(new rkError(`Cannot find ${req.originalUrl} on this server!` , 404))
 });
 
-// Implementing Global Error Handler
 
 
 // exporting 

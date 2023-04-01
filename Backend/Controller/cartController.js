@@ -1,4 +1,4 @@
-/* const Cart = require('../Model/cartModel');
+const Cart = require('../Model/cartModel');
 const catchAsync = require('../UtilsRk/catchAsync');
 
 exports.getAllCart = catchAsync( async (req , res , next)=>{
@@ -34,5 +34,5 @@ exports.addItemtoCart = catchAsync( async (req , res , next)=>{
             product : newItem
         }
     });
-}); */
+});
 

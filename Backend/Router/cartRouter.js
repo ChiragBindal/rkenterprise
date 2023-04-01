@@ -1,9 +1,9 @@
-/* const express = require('express');
-const cartRouter = require('../Controller/cartController');
+ const express = require('express');
+const cartController = require('../Controller/cartController');
 const authController = require('../Controller/authController');
 const Router = express.Router();
 
 Router.route('/')
-    .get(authController.protect , cartRouter.getAllCart)
-
-    module.exports = Router; */
+    .get(cartController.getAllCart)
+ .post(authController.protect,cartController.addItemtoCart)
+module.exports = Router; 
