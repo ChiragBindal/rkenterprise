@@ -61,7 +61,7 @@ exports.login = catchAsync( async(req , res , next)=>{
 });
 
 exports.protect = catchAsync( async(req , res , next)=>{
-  console.log(req.headers.authorization);
+  // console.log(req.headers.authorization);
   // 1.) Getting Tokens and Check if its there
   let token;
   if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){

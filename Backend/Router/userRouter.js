@@ -11,6 +11,6 @@ Router.route('/updatePassword').patch(authController.protect , authController.up
 Router.route('/updateMe').patch(authController.protect , authController.updateMe);
 // Applying CRUD operations
 Router.route('/').get(authController.protect , authController.restrictTo ,userController.getAllUsers);
-Router.route('/:id').delete(userController.deleteUser);
+Router.route('/:id').get(userController.getUser).delete(userController.deleteUser);
 
 module.exports = Router;

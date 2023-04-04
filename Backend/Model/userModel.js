@@ -44,9 +44,18 @@ const userSchema = new mongoose.Schema({
         type : Boolean,
         default : true,
         select : false
-    }
-});
-
+    },
+},{
+    toJSON : {virtuals : true} , 
+    toObject : {virtuals : true}
+}
+);
+userSchema.virtual('cartproduct',{
+    ref : 'Cart',
+    foreignField : 'user',
+    localField : '_id'
+}
+);
 userSchema.pre('save' , async function(next){
     if(!this.isModified('password')) return next();
 

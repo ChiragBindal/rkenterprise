@@ -12,7 +12,16 @@ exports.getAllUsers = catchAsync( async (req , res , next)=>{
         }
     })
 });
+exports.getUser = catchAsync(async(req,res,next)=>{
+    const user = await User.findById(req.params.id).populate('cartproduct');
 
+    res.status(200).json({
+        status : 'success',
+        data : {
+            user : user
+        }
+    })
+})
 exports.deleteUser = catchAsync ( async (req , res , next)=>{
     await User.findByIdAndDelete(req.params.id);
 

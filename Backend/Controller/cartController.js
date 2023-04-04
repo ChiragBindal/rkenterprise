@@ -15,24 +15,40 @@ exports.getAllCart = catchAsync( async (req , res , next)=>{
 
 exports.addItemtoCart = catchAsync( async (req , res , next)=>{
     const ans = await Cart.findOne({user  : req.user.id});
-    let id = req.user.id
+    console.log(ans);
+    let id = ans.id;
     if(ans){
         await Cart.findOneAndUpdate({id} , {
-            "$push" : {
-                "cartItems" : req.body.cartItems
+            "cartItems":
+            {
+                "$push" : req.body.cartItems
             }
         })
     }
-    const newItem = await Cart.create({
-        user : req.user.id,
-        cartItems : req.body.cartItems
-    });
+    else{
+        const newItem = await Cart.create({
+            user : req.user.id,
+            cartItems : req.body.cartItems
+        });
+    }
+   
 
     res.status(201).json({
         status : 'success',
-        data : {
-            product : newItem
-        }
+        data : data
     });
 });
+exports.removeItemtoCart = catchAsync((req,res,next)=>{
+
+});
+
+exports.deleteCart = catchAsync(async(req,res,next)=>{
+    await Cart.findByIdAndDelete(req.params.id);
+
+    res.status(204).json({
+        status : 'success',
+        data : null
+    })
+});
+
 
