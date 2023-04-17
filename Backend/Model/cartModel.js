@@ -7,20 +7,24 @@ const cartSchema = new mongoose.Schema({
         required  :true
     },
     cartItems :
-       [
-         {
+       [{
+         product : {
             type : mongoose.Schema.ObjectId,
             ref  : 'Product',
             required  : true
+        },
+        quantity : {
+            type : Number,
+            required : true
         }
-       ]
+    }]
 }, {
     toJSON : {virtuals : true} , 
     toObject : {virtuals : true}
 });
 cartSchema.index({cartItems : 1 , user : 1},{unique : true})
 cartSchema.pre(/^find/ , function(next){
-    this.populate('user').populate({path : 'cartItems' , select : '-__v -description'});
+    this.populate('user');
     next();
 })
 const Cart = mongoose.model('Cart' , cartSchema);
