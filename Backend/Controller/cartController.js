@@ -13,7 +13,7 @@ exports.getAllCart = catchAsync( async (req , res , next)=>{
         }
     })
 });
-// Add item to cart . 
+
 exports.addItemtoCart = catchAsync( async (req , res , next)=>{
     const ans = await Cart.findOne({user  : req.user.id});
     const {productId , quantity} = req.body;
